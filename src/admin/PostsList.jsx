@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { apiGet, apiSend } from '../lib/api';
+import { useCms } from '../context/CmsContext';
 
 export default function PostsList() {
+  const { refresh } = useCms();
   const [posts, setPosts] = useState([]);
 
   const load = () => apiGet('/posts').then(setPosts);
@@ -15,6 +17,7 @@ export default function PostsList() {
     if (!window.confirm('Delete this post?')) return;
     await apiSend(`/posts/${id}`, 'DELETE');
     load();
+    refresh();
   };
 
   return (

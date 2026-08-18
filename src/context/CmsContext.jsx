@@ -1,5 +1,6 @@
-import { createContext, useContext, useEffect, useMemo, useState } from 'react';
-import { publicGet } from '../lib/api';
+import { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { onCmsUpdate, publicGet } from '../lib/api';
 import { applyTheme } from '../lib/theme';
 import { defaultPages, defaultPosts, defaultSettings, defaultTestimonials, deepMerge } from '../data/cmsDefaults';
 
@@ -21,13 +22,18 @@ function formatPost(post) {
 }
 
 export function CmsProvider({ children }) {
+  const { pathname } = useLocation();
   const [settings, setSettings] = useState(defaultSettings);
   const [pages, setPages] = useState({});
   const [posts, setPosts] = useState(defaultPosts.map(formatPost));
   const [testimonials, setTestimonials] = useState(defaultTestimonials);
   const [loading, setLoading] = useState(true);
+  const loadingRef = useRef(false);
 
-  const load = async () => {
+  const load = async (silent = false) => {
+    if (loadingRef.current) return;
+    loadingRef.current = true;
+    if (!silent) setLoading(true);
     try {
       const [nextSettings, nextPages, nextPosts, nextTestimonials] = await Promise.all([
         publicGet('/settings'),
@@ -49,12 +55,28 @@ export function CmsProvider({ children }) {
     } catch {
       // Keep default content if the API is not running.
     } finally {
+      loadingRef.current = false;
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    load();
+    load(pathname !== '/');
+  }, [pathname]);
+
+  useEffect(() => {
+    const reload = () => load(true);
+    const onVisible = () => {
+      if (document.visibilityState === 'visible') reload();
+    };
+    const unsubscribe = onCmsUpdate(reload);
+    window.addEventListener('focus', reload);
+    document.addEventListener('visibilitychange', onVisible);
+    return () => {
+      unsubscribe();
+      window.removeEventListener('focus', reload);
+      document.removeEventListener('visibilitychange', onVisible);
+    };
   }, []);
 
   useEffect(() => {
@@ -68,7 +90,7 @@ export function CmsProvider({ children }) {
       posts,
       testimonials,
       loading,
-      refresh: load,
+      refresh: () => load(true),
       getPage(slug) {
         return deepMerge(defaultPages[slug]?.content, pages[slug]?.content);
       },

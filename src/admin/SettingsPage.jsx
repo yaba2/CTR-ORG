@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { apiGet, apiSend } from '../lib/api';
 import { FONT_OPTIONS } from '../lib/theme';
+import { useCms } from '../context/CmsContext';
 
 const empty = {
   siteName: '',
@@ -17,6 +18,7 @@ const empty = {
 };
 
 export default function SettingsPage() {
+  const { refresh } = useCms();
   const [form, setForm] = useState(empty);
   const [passwords, setPasswords] = useState({ currentPassword: '', newPassword: '' });
   const [message, setMessage] = useState('');
@@ -35,7 +37,8 @@ export default function SettingsPage() {
     try {
       const saved = await apiSend('/settings', 'PUT', form);
       setForm({ ...empty, ...saved });
-      setMessage('Settings saved. Refresh the public site to see theme changes.');
+      await refresh();
+      setMessage('Settings saved. The public site will update when you open or return to it.');
     } catch (err) {
       setMessage(err.message);
     } finally {

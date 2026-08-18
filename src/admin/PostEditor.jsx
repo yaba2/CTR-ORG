@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { apiGet, apiSend, apiUpload } from '../lib/api';
+import { useCms } from '../context/CmsContext';
 
 const emptyPost = {
   title: '',
@@ -32,6 +33,7 @@ export default function PostEditor() {
   const { id } = useParams();
   const isNew = !id || id === 'new';
   const navigate = useNavigate();
+  const { refresh } = useCms();
   const [form, setForm] = useState(emptyPost);
   const [message, setMessage] = useState('');
   const [saving, setSaving] = useState(false);
@@ -110,7 +112,8 @@ export default function PostEditor() {
       } else {
         await apiSend(`/posts/${id}`, 'PUT', payload);
       }
-      setMessage('Post saved.');
+      await refresh();
+      setMessage('Post saved. The public site will update when you open or return to it.');
     } catch (err) {
       setMessage(err.message);
     } finally {

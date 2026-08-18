@@ -1,4 +1,39 @@
 const jsonHeaders = { 'Content-Type': 'application/json' };
+const CMS_EVENT = 'cms-updated';
+const CMS_CHANNEL = 'ctr-cms';
+
+export function notifyCmsUpdate() {
+  window.dispatchEvent(new Event(CMS_EVENT));
+  try {
+    const channel = new BroadcastChannel(CMS_CHANNEL);
+    channel.postMessage({ type: CMS_EVENT });
+    channel.close();
+  } catch {
+    // BroadcastChannel is unavailable in some browsers.
+  }
+}
+
+export function onCmsUpdate(handler) {
+  window.addEventListener(CMS_EVENT, handler);
+  let channel;
+  try {
+    channel = new BroadcastChannel(CMS_CHANNEL);
+    channel.onmessage = handler;
+  } catch {
+    channel = null;
+  }
+  return () => {
+    window.removeEventListener(CMS_EVENT, handler);
+    channel?.close();
+  };
+}
+
+const noStore = { cache: 'no-store' };
+
+function withBust(path) {
+  const join = path.includes('?') ? '&' : '?';
+  return `${path}${join}_=${Date.now()}`;
+}
 
 async function parse(res) {
   const text = await res.text();
@@ -17,31 +52,56 @@ async function parse(res) {
 }
 
 export function publicGet(path) {
-  return fetch(`/api/public${path}`).then(parse);
+  return fetch(withBust(`/api/public${path}`), noStore).then(parse);
 }
 
 export function apiGet(path) {
-  return fetch(`/api${path}`, { credentials: 'include' }).then(parse);
+  return fetch(withBust(`/api${path}`), { ...noStore, credentials: 'include' }).then(parse);
 }
 
 export function apiSend(path, method, body) {
   return fetch(`/api${path}`, {
     method,
     credentials: 'include',
+    cache: 'no-store',
     headers: jsonHeaders,
     body: body ? JSON.stringify(body) : undefined,
-  }).then(parse);
+  })
+    .then(parse)
+    .then((data) => {
+      notifyCmsUpdate();
+      return data;
+    });
 }
 
 export function apiUpload(file) {
-  if (file.size > 20 * 1024 * 1024) {
-    return Promise.reject(new Error('Image is too large. Please use a file under 20 MB.'));
+  const maxBytes = 4 * 1024 * 1024;
+  if (file.size > maxBytes) {
+    return Promise.reject(new Error('Image is too large. Please use a file under 4 MB on the live site.'));
   }
-  const body = new FormData();
-  body.append('file', file);
-  return fetch('/api/auth/upload', {
-    method: 'POST',
-    credentials: 'include',
-    body,
-  }).then(parse);
+
+  return file.arrayBuffer().then((buffer) => {
+    const bytes = new Uint8Array(buffer);
+    let binary = '';
+    const chunk = 0x8000;
+    for (let i = 0; i < bytes.length; i += chunk) {
+      binary += String.fromCharCode(...bytes.subarray(i, i + chunk));
+    }
+    return fetch('/api/auth/upload', {
+      method: 'POST',
+      credentials: 'include',
+      cache: 'no-store',
+      headers: jsonHeaders,
+      body: JSON.stringify({
+        filename: file.name,
+        mimeType: file.type,
+        data: btoa(binary),
+      }),
+    })
+      .then(parse)
+      .then((data) => {
+        notifyCmsUpdate();
+        return data;
+      });
+  });
 }

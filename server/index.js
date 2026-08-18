@@ -32,6 +32,13 @@ app.use(
     credentials: true,
   })
 );
+app.use((req, res, next) => {
+  if (req.path.startsWith('/api')) {
+    res.set('Cache-Control', 'no-store, no-cache, must-revalidate');
+    res.set('Pragma', 'no-cache');
+  }
+  next();
+});
 app.use(express.json({ limit: '25mb' }));
 app.use(cookieParser());
 

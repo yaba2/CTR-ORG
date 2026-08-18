@@ -44,8 +44,8 @@ function PublicLayout() {
 
 function App() {
   return (
-    <CmsProvider>
-      <Router>
+    <Router>
+      <CmsProvider>
         <ScrollToTop />
         <Routes>
           <Route path="/admin/login" element={<AdminLogin />} />
@@ -71,8 +71,8 @@ function App() {
             <Route path="/contact" element={<Contact />} />
           </Route>
         </Routes>
-      </Router>
-    </CmsProvider>
+      </CmsProvider>
+    </Router>
   );
 }
 

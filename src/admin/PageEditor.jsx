@@ -38,7 +38,7 @@ export default function PageEditor() {
         ...saved,
         content: deepMerge(defaultPages[slug]?.content || {}, saved.content),
       });
-      setMessage('Saved. Refresh the public page to see the changes.');
+      setMessage('Saved. The public site will update when you open or return to it.');
       refresh();
     } catch (err) {
       setMessage(err.message);
