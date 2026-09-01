@@ -92,7 +92,7 @@ export default function Contact() {
           <div className="grid lg:grid-cols-5 gap-12">
             <div className="lg:col-span-3">
               <ScrollReveal>
-                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-navy-800 mb-2">
+                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-ink-800 mb-2">
                   {page.form.title}
                 </h2>
                 <p className="text-gray-600 mb-8">
@@ -102,7 +102,7 @@ export default function Contact() {
                 {submitted ? (
                   <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-8 text-center">
                     <CheckCircle size={48} className="text-emerald-500 mx-auto mb-4" />
-                    <h3 className="font-serif font-bold text-navy-800 text-xl mb-2">{page.form.successTitle}</h3>
+                    <h3 className="font-serif font-bold text-ink-800 text-xl mb-2">{page.form.successTitle}</h3>
                     <p className="text-gray-600">{page.form.successMessage}</p>
                   </div>
                 ) : (
@@ -113,7 +113,7 @@ export default function Contact() {
                       </div>
                     )}
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-navy-800 mb-2">
+                      <label htmlFor="name" className="block text-sm font-medium text-ink-800 mb-2">
                         Full Name
                       </label>
                       <input
@@ -129,7 +129,7 @@ export default function Contact() {
                     </div>
 
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-navy-800 mb-2">
+                      <label htmlFor="email" className="block text-sm font-medium text-ink-800 mb-2">
                         Email Address
                       </label>
                       <input
@@ -145,7 +145,7 @@ export default function Contact() {
                     </div>
 
                     <div>
-                      <label htmlFor="service" className="block text-sm font-medium text-navy-800 mb-2">
+                      <label htmlFor="service" className="block text-sm font-medium text-ink-800 mb-2">
                         Service Interested In
                       </label>
                       <select
@@ -164,7 +164,7 @@ export default function Contact() {
                     </div>
 
                     <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-navy-800 mb-2">
+                      <label htmlFor="message" className="block text-sm font-medium text-ink-800 mb-2">
                         Message
                       </label>
                       <textarea
@@ -195,7 +195,7 @@ export default function Contact() {
             <div className="lg:col-span-2">
               <ScrollReveal delay={200}>
                 <div className="bg-gray-50 rounded-2xl p-8">
-                  <h3 className="font-serif font-bold text-navy-800 text-lg mb-6">{page.infoTitle}</h3>
+                  <h3 className="font-serif font-bold text-ink-800 text-lg mb-6">{page.infoTitle}</h3>
                   <div className="space-y-6">
                     {contactInfo.map((ci) => (
                       <div key={ci.label} className="flex items-start gap-4">
@@ -203,9 +203,9 @@ export default function Contact() {
                           <ci.icon size={18} />
                         </div>
                         <div>
-                          <div className="text-sm font-medium text-navy-800">{ci.label}</div>
+                          <div className="text-sm font-medium text-ink-800">{ci.label}</div>
                           {ci.href ? (
-                            <a href={ci.href} className="text-gray-600 text-sm hover:text-navy-700 transition-colors">
+                            <a href={ci.href} className="text-gray-600 text-sm hover:text-ink-700 transition-colors">
                               {ci.value}
                             </a>
                           ) : (
@@ -217,7 +217,7 @@ export default function Contact() {
                   </div>
 
                   <div className="mt-8 pt-6 border-t border-gray-200">
-                    <h4 className="font-semibold text-navy-800 text-sm mb-3">{page.guaranteeTitle}</h4>
+                    <h4 className="font-semibold text-ink-800 text-sm mb-3">{page.guaranteeTitle}</h4>
                     <p className="text-gray-600 text-sm leading-relaxed">
                       {page.guaranteeText}
                     </p>

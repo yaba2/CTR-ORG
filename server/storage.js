@@ -1,9 +1,11 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import { createClient } from '@supabase/supabase-js';
 import { getSupabaseConfig } from './env.js';
 
 const BUCKET = 'uploads';
+const uploadDir = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'public', 'uploads');
 
 function fileName(originalName = 'image.jpg') {
   const ext = path.extname(originalName).toLowerCase() || '.jpg';
@@ -55,7 +57,6 @@ export async function storeImage({ buffer, filename, mimeType }) {
     );
   }
 
-  const uploadDir = path.join(process.cwd(), 'public', 'uploads');
   fs.mkdirSync(uploadDir, { recursive: true });
   fs.writeFileSync(path.join(uploadDir, name), buffer);
   return `/uploads/${name}`;

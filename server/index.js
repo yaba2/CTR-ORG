@@ -1,4 +1,6 @@
 import 'dotenv/config';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
@@ -13,6 +15,7 @@ import { getSupabaseConfig } from './env.js';
 
 const app = express();
 const port = Number(process.env.PORT) || 4000;
+const projectRoot = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 const allowedOrigins = [
   'http://localhost:5173',
@@ -42,6 +45,7 @@ app.use((req, res, next) => {
 });
 app.use(express.json({ limit: '25mb' }));
 app.use(cookieParser());
+app.use('/uploads', express.static(path.join(projectRoot, 'public', 'uploads')));
 
 app.get('/api/health', (_req, res) => {
   const storage = getSupabaseConfig();

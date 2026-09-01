@@ -14,7 +14,7 @@ function TestimonialCard({ t }) {
           {t.name.charAt(0)}
         </div>
         <div className="min-w-0">
-          <div className="font-semibold text-navy-800 text-sm truncate">{t.name}</div>
+          <div className="font-semibold text-ink-800 text-sm truncate">{t.name}</div>
           <div className="text-gray-500 text-xs truncate">{t.role}</div>
         </div>
       </div>
@@ -76,7 +76,7 @@ export default function TestimonialsPreview() {
         <ScrollReveal>
           <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
             <span className="text-gold-600 font-semibold text-sm tracking-wide uppercase">{copy.eyebrow}</span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-navy-800 mt-3 mb-4">
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-ink-800 mt-3 mb-4">
               {copy.title}
             </h2>
             <p className="text-gray-600 text-base sm:text-lg">
@@ -104,14 +104,14 @@ export default function TestimonialsPreview() {
 
           <button
             onClick={prev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 sm:-translate-x-4 w-10 h-10 bg-white rounded-full shadow-lg border border-gray-100 flex items-center justify-center text-navy-700 hover:bg-navy-800 hover:text-white transition-colors z-10"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 sm:-translate-x-4 w-10 h-10 bg-white rounded-full shadow-lg border border-gray-100 flex items-center justify-center text-ink-700 hover:bg-navy-800 hover:text-white transition-colors z-10"
             aria-label="Previous"
           >
             <ChevronLeft size={20} />
           </button>
           <button
             onClick={next}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 sm:translate-x-4 w-10 h-10 bg-white rounded-full shadow-lg border border-gray-100 flex items-center justify-center text-navy-700 hover:bg-navy-800 hover:text-white transition-colors z-10"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 sm:translate-x-4 w-10 h-10 bg-white rounded-full shadow-lg border border-gray-100 flex items-center justify-center text-ink-700 hover:bg-navy-800 hover:text-white transition-colors z-10"
             aria-label="Next"
           >
             <ChevronRight size={20} />
@@ -137,7 +137,7 @@ export default function TestimonialsPreview() {
           <div className="text-center mt-10 sm:mt-12">
             <Link
               to="/testimonials"
-              className="inline-flex items-center gap-2 text-navy-700 font-semibold hover:text-navy-900 transition-colors"
+              className="inline-flex items-center gap-2 text-ink-700 font-semibold hover:text-ink-900 transition-colors"
             >
               Read More Testimonials
               <span className="text-gold-500">→</span>

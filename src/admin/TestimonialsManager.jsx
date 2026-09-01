@@ -55,10 +55,10 @@ export default function TestimonialsManager() {
 
   return (
     <div className="space-y-5">
-      {message && <div className="text-sm text-navy-800 bg-navy-50 rounded-lg px-4 py-3">{message}</div>}
+      {message && <div className="text-sm text-ink-800 bg-navy-50 rounded-lg px-4 py-3">{message}</div>}
 
       <div className="rounded-xl border border-slate-200 bg-white p-5 space-y-4">
-        <h3 className="font-semibold text-navy-800">{editingId ? 'Edit testimonial' : 'Add a new testimonial'}</h3>
+        <h3 className="font-semibold text-ink-800">{editingId ? 'Edit testimonial' : 'Add a new testimonial'}</h3>
         <Field label="Name" value={form.name} onChange={(name) => setForm({ ...form, name })} />
         <Field label="Role / title" value={form.role} onChange={(role) => setForm({ ...form, role })} />
         <Field label="Quote" value={form.text} onChange={(text) => setForm({ ...form, text })} textarea rows={4} />
@@ -94,10 +94,10 @@ export default function TestimonialsManager() {
       <div className="space-y-3">
         {items.map((item) => (
           <div key={item.id} className="rounded-xl border border-slate-200 bg-slate-50 p-5">
-            <div className="font-semibold text-navy-800">{item.name}</div>
-            <div className="text-sm text-navy-500 mb-2">{item.role}</div>
-            <p className="text-navy-700 text-sm mb-3">"{item.text}"</p>
-            <div className="text-xs text-navy-500 mb-3">{item.rating || 5} / 5 stars</div>
+            <div className="font-semibold text-ink-800">{item.name}</div>
+            <div className="text-sm text-ink-500 mb-2">{item.role}</div>
+            <p className="text-ink-700 text-sm mb-3">"{item.text}"</p>
+            <div className="text-xs text-ink-500 mb-3">{item.rating || 5} / 5 stars</div>
             <div className="flex gap-3">
               <button
                 type="button"
@@ -110,7 +110,7 @@ export default function TestimonialsManager() {
                     rating: item.rating || 5,
                   });
                 }}
-                className="text-sm font-medium text-navy-800 hover:underline"
+                className="text-sm font-medium text-ink-800 hover:underline"
               >
                 Edit
               </button>
@@ -120,7 +120,7 @@ export default function TestimonialsManager() {
             </div>
           </div>
         ))}
-        {items.length === 0 && <p className="text-sm text-navy-500">No testimonials yet. Add the first one above.</p>}
+        {items.length === 0 && <p className="text-sm text-ink-500">No testimonials yet. Add the first one above.</p>}
       </div>
     </div>
   );

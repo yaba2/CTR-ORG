@@ -12,8 +12,8 @@ export default function PagesList() {
 
   return (
     <div>
-      <h1 className="font-serif text-3xl font-bold text-navy-800 mb-2">Pages</h1>
-      <p className="text-navy-600 mb-8">
+      <h1 className="font-serif text-3xl font-bold text-ink-800 mb-2">Pages</h1>
+      <p className="text-ink-600 mb-8">
         Open a page to edit every section as it appears on the website.
       </p>
       <div className="grid md:grid-cols-2 gap-5">
@@ -28,16 +28,16 @@ export default function PagesList() {
             >
               <div className="flex items-start justify-between gap-3 mb-3">
                 <div>
-                  <h2 className="font-serif text-xl font-bold text-navy-800">{page.title}</h2>
-                  <p className="text-sm text-navy-500">{path}</p>
+                  <h2 className="font-serif text-xl font-bold text-ink-800">{page.title}</h2>
+                  <p className="text-sm text-ink-500">{path}</p>
                 </div>
-                <span className="text-sm font-semibold text-navy-800">Edit →</span>
+                <span className="text-sm font-semibold text-ink-800">Edit →</span>
               </div>
               <div className="flex flex-wrap gap-2">
                 {sections.map((section) => (
                   <span
                     key={section.id}
-                    className="text-xs bg-navy-50 text-navy-700 rounded-full px-2.5 py-1"
+                    className="text-xs bg-navy-50 text-ink-700 rounded-full px-2.5 py-1"
                   >
                     {section.label}
                   </span>

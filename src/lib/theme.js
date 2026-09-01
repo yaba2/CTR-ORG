@@ -43,6 +43,7 @@ export function applyTheme(settings) {
 
   const root = document.documentElement;
   const primary = settings.primaryColor || '#1a2846';
+  const text = settings.textColor || primary;
   const accent = settings.accentColor || '#e5a830';
 
   const navy = {
@@ -57,6 +58,20 @@ export function applyTheme(settings) {
     800: primary,
     900: mix(primary, '#000000', 0.4),
     950: mix(primary, '#000000', 0.62),
+  };
+
+  const ink = {
+    50: mix(text, '#ffffff', 0.92),
+    100: mix(text, '#ffffff', 0.82),
+    200: mix(text, '#ffffff', 0.68),
+    300: mix(text, '#ffffff', 0.52),
+    400: mix(text, '#ffffff', 0.35),
+    500: mix(text, '#ffffff', 0.12),
+    600: mix(text, '#000000', 0.12),
+    700: mix(text, '#000000', 0.28),
+    800: text,
+    900: mix(text, '#000000', 0.4),
+    950: mix(text, '#000000', 0.62),
   };
 
   const gold = {
@@ -74,6 +89,9 @@ export function applyTheme(settings) {
 
   for (const [step, value] of Object.entries(navy)) {
     root.style.setProperty(`--color-navy-${step}`, value);
+  }
+  for (const [step, value] of Object.entries(ink)) {
+    root.style.setProperty(`--color-ink-${step}`, value);
   }
   for (const [step, value] of Object.entries(gold)) {
     root.style.setProperty(`--color-gold-${step}`, value);

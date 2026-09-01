@@ -26,6 +26,7 @@ model SiteSettings {
   address      String
   hours        String
   primaryColor String
+  textColor    String  @default("#1a2846")
   accentColor  String
   headingFont  String
   bodyFont     String

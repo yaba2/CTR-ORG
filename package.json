@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently -n web,api -c cyan,magenta \"vite\" \"node --watch server/index.js\"",
+    "dev": "concurrently -n web,api -c cyan,magenta --restart-tries 10 --restart-after 2000 \"vite\" \"node --watch server/index.js\"",
     "dev:client": "vite",
     "dev:server": "node --watch server/index.js",
     "build": "prisma generate --schema server/prisma/schema.prisma && vite build",

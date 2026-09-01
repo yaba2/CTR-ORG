@@ -35,7 +35,7 @@ export default function About() {
           <div className="grid lg:grid-cols-2 gap-10 sm:gap-16 items-center">
             <ScrollReveal>
               <span className="text-gold-600 font-semibold text-sm tracking-wide uppercase">{page.story.eyebrow}</span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-navy-800 mt-3 mb-6">
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-ink-800 mt-3 mb-6">
                 {page.story.title}
               </h2>
               {page.story.paragraphs.map((paragraph) => (
@@ -49,7 +49,7 @@ export default function About() {
               <div className="grid grid-cols-2 gap-6">
                 {page.story.stats.map((stat, index) => (
                   <div key={stat.label} className={`${index % 3 === 1 || index === 2 ? 'bg-gold-50' : 'bg-navy-50'} rounded-2xl p-8 text-center`}>
-                    <div className={`text-4xl font-bold mb-2 ${index % 3 === 1 || index === 2 ? 'text-gold-600' : 'text-navy-800'}`}>{stat.value}</div>
+                    <div className={`text-4xl font-bold mb-2 ${index % 3 === 1 || index === 2 ? 'text-gold-600' : 'text-ink-800'}`}>{stat.value}</div>
                     <div className="text-gray-600 text-sm">{stat.label}</div>
                   </div>
                 ))}
@@ -64,7 +64,7 @@ export default function About() {
           <ScrollReveal>
             <div className="text-center max-w-3xl mx-auto mb-16">
               <span className="text-gold-600 font-semibold text-sm tracking-wide uppercase">{page.mission.eyebrow}</span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-navy-800 mt-3">
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-ink-800 mt-3">
                 {page.mission.title}
               </h2>
             </div>
@@ -73,10 +73,10 @@ export default function About() {
           <div className="grid md:grid-cols-2 gap-8">
             <ScrollReveal>
               <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 h-full">
-                <div className="w-14 h-14 bg-navy-50 text-navy-700 rounded-xl flex items-center justify-center mb-5">
+                <div className="w-14 h-14 bg-navy-50 text-ink-700 rounded-xl flex items-center justify-center mb-5">
                   <Target size={26} />
                 </div>
-                <h3 className="font-serif font-bold text-navy-800 text-xl mb-4">{page.mission.missionTitle}</h3>
+                <h3 className="font-serif font-bold text-ink-800 text-xl mb-4">{page.mission.missionTitle}</h3>
                 <p className="text-gray-600 leading-relaxed">
                   {page.mission.mission}
                 </p>
@@ -88,7 +88,7 @@ export default function About() {
                 <div className="w-14 h-14 bg-gold-50 text-gold-600 rounded-xl flex items-center justify-center mb-5">
                   <Eye size={26} />
                 </div>
-                <h3 className="font-serif font-bold text-navy-800 text-xl mb-4">{page.mission.visionTitle}</h3>
+                <h3 className="font-serif font-bold text-ink-800 text-xl mb-4">{page.mission.visionTitle}</h3>
                 <p className="text-gray-600 leading-relaxed">
                   {page.mission.vision}
                 </p>
@@ -103,7 +103,7 @@ export default function About() {
           <ScrollReveal>
             <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
               <span className="text-gold-600 font-semibold text-sm tracking-wide uppercase">{page.values.eyebrow}</span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-navy-800 mt-3">
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-ink-800 mt-3">
                 {page.values.title}
               </h2>
             </div>
@@ -116,7 +116,7 @@ export default function About() {
                   <div className="w-12 h-12 bg-navy-800 text-gold-400 rounded-xl flex items-center justify-center mb-4">
                     <v.icon size={22} />
                   </div>
-                  <h3 className="font-serif font-bold text-navy-800 text-lg mb-2">{v.title}</h3>
+                  <h3 className="font-serif font-bold text-ink-800 text-lg mb-2">{v.title}</h3>
                   <p className="text-gray-600 text-sm leading-relaxed">{v.description}</p>
                 </div>
               </ScrollReveal>

@@ -45,7 +45,7 @@ export default function Services() {
                   <div className={`w-16 h-16 ${service.color} text-white rounded-2xl flex items-center justify-center mb-6`}>
                     <service.icon size={30} />
                   </div>
-                  <h2 className="font-serif text-3xl sm:text-4xl font-bold text-navy-800 mb-4">
+                  <h2 className="font-serif text-3xl sm:text-4xl font-bold text-ink-800 mb-4">
                     {service.title}
                   </h2>
                   <p className="text-gray-600 text-lg leading-relaxed mb-8">
@@ -63,7 +63,7 @@ export default function Services() {
               <ScrollReveal delay={200}>
                 <div className={i % 2 !== 0 ? 'lg:[direction:ltr]' : ''}>
                   <div className={`${service.lightBg} rounded-2xl p-8`}>
-                    <h3 className="font-serif font-bold text-navy-800 text-lg mb-6">Key Benefits</h3>
+                    <h3 className="font-serif font-bold text-ink-800 text-lg mb-6">Key Benefits</h3>
                     <ul className="space-y-4">
                       {service.benefits.map((benefit) => (
                         <li key={benefit} className="flex items-start gap-3">

@@ -39,7 +39,7 @@ export default function Government() {
           <ScrollReveal>
             <div className="text-center max-w-3xl mx-auto mb-16">
               <span className="text-gold-600 font-semibold text-sm tracking-wide uppercase">{page.services.eyebrow}</span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-navy-800 mt-3 mb-4">
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-ink-800 mt-3 mb-4">
                 {page.services.title}
               </h2>
               <p className="text-gray-600 text-lg">
@@ -56,7 +56,7 @@ export default function Government() {
                     <div className={`w-16 h-16 ${service.color} text-white rounded-2xl flex items-center justify-center mb-6`}>
                       <service.icon size={30} />
                     </div>
-                    <h3 className="font-serif text-2xl sm:text-3xl font-bold text-navy-800 mb-4">{service.title}</h3>
+                    <h3 className="font-serif text-2xl sm:text-3xl font-bold text-ink-800 mb-4">{service.title}</h3>
                     <p className="text-gray-600 text-lg leading-relaxed mb-6">{service.description}</p>
                     <Link
                       to="/contact"
@@ -68,7 +68,7 @@ export default function Government() {
 
                   <div className={i % 2 !== 0 ? 'lg:[direction:ltr]' : ''}>
                     <div className={`${service.lightBg} rounded-2xl p-8`}>
-                      <h4 className="font-serif font-bold text-navy-800 mb-5">Key Benefits</h4>
+                      <h4 className="font-serif font-bold text-ink-800 mb-5">Key Benefits</h4>
                       <ul className="space-y-3">
                         {service.benefits.map((b) => (
                           <li key={b} className="flex items-start gap-3">
@@ -91,7 +91,7 @@ export default function Government() {
           <ScrollReveal>
             <div className="text-center max-w-3xl mx-auto mb-16">
               <span className="text-gold-600 font-semibold text-sm tracking-wide uppercase">{page.trust.eyebrow}</span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-navy-800 mt-3">
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-ink-800 mt-3">
                 {page.trust.title}
               </h2>
             </div>
@@ -104,7 +104,7 @@ export default function Government() {
                   <div className="w-16 h-16 bg-navy-800 text-gold-400 rounded-2xl flex items-center justify-center mx-auto mb-5">
                     <tp.icon size={28} />
                   </div>
-                  <h3 className="font-serif font-bold text-navy-800 text-lg mb-3">{tp.title}</h3>
+                  <h3 className="font-serif font-bold text-ink-800 text-lg mb-3">{tp.title}</h3>
                   <p className="text-gray-600 text-sm leading-relaxed">{tp.description}</p>
                 </div>
               </ScrollReveal>

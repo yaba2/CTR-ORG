@@ -22,20 +22,20 @@ export default function PostCard({ post }) {
       )}
       
       <div className="p-6 flex-1 flex flex-col">
-        <div className="text-sm text-navy-500 mb-2 font-medium">
+        <div className="text-sm text-ink-500 mb-2 font-medium">
           {post.publishedDate}
         </div>
         
-        <h3 className="text-xl font-serif font-bold text-navy-800 mb-3 line-clamp-2 group-hover:text-navy-600 transition-colors">
+        <h3 className="text-xl font-serif font-bold text-ink-800 mb-3 line-clamp-2 group-hover:text-ink-600 transition-colors">
           {post.title}
         </h3>
         
-        <p className="text-navy-600 text-sm leading-relaxed flex-1">
+        <p className="text-ink-600 text-sm leading-relaxed flex-1">
           {post.summary}
         </p>
         
         <div className="mt-4 pt-4 border-t border-navy-100">
-          <span className="text-navy-800 text-sm font-medium group-hover:text-navy-600 transition-colors inline-flex items-center gap-1">
+          <span className="text-ink-800 text-sm font-medium group-hover:text-ink-600 transition-colors inline-flex items-center gap-1">
             Read More
             <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

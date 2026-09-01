@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Outlet, useLocation } from 'rea
 import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import HelpChat from './components/HelpChat';
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
@@ -38,6 +39,7 @@ function PublicLayout() {
         <Outlet />
       </main>
       <Footer />
+      <HelpChat />
     </div>
   );
 }

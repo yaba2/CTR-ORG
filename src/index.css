@@ -13,6 +13,18 @@
   --color-navy-900: #0d1423;
   --color-navy-950: #060a12;
 
+  --color-ink-50: #f0f3f9;
+  --color-ink-100: #d9e0ef;
+  --color-ink-200: #b3c1df;
+  --color-ink-300: #8da2cf;
+  --color-ink-400: #6783bf;
+  --color-ink-500: #4164af;
+  --color-ink-600: #34508c;
+  --color-ink-700: #273c69;
+  --color-ink-800: #1a2846;
+  --color-ink-900: #0d1423;
+  --color-ink-950: #060a12;
+
   --color-gold-50: #fef9f0;
   --color-gold-100: #fdf0d5;
   --color-gold-200: #fbe1ab;
@@ -35,6 +47,7 @@
   body {
     margin: 0;
     font-family: var(--font-sans);
+    color: var(--color-ink-700);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

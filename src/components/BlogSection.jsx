@@ -12,8 +12,8 @@ export default function BlogSection() {
       <div className="site-container">
         <div className="flex justify-between items-center mb-12">
           <div>
-            <h2 className="text-3xl font-serif font-bold text-navy-800 mb-2">{blog.title}</h2>
-            <p className="text-navy-600">{blog.subtitle}</p>
+            <h2 className="text-3xl font-serif font-bold text-ink-800 mb-2">{blog.title}</h2>
+            <p className="text-ink-600">{blog.subtitle}</p>
           </div>
           <Link 
             to="/blog" 
@@ -38,7 +38,7 @@ export default function BlogSection() {
           </div>
         ) : posts.length === 0 ? (
           <div className="text-center py-8">
-            <p className="text-navy-600">No blog posts available at the moment.</p>
+            <p className="text-ink-600">No blog posts available at the moment.</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

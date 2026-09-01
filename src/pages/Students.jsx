@@ -37,7 +37,7 @@ export default function Students() {
           <ScrollReveal>
             <div className="text-center max-w-3xl mx-auto mb-16">
               <span className="text-gold-600 font-semibold text-sm tracking-wide uppercase">{page.process.eyebrow}</span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-navy-800 mt-3 mb-4">
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-ink-800 mt-3 mb-4">
                 {page.process.title}
               </h2>
               <p className="text-gray-600 text-lg">
@@ -57,7 +57,7 @@ export default function Students() {
                       </div>
                       <span className="text-gold-500 font-bold text-sm">Step {step.number}</span>
                     </div>
-                    <h3 className="font-serif text-2xl font-bold text-navy-800 mb-3">{step.title}</h3>
+                    <h3 className="font-serif text-2xl font-bold text-ink-800 mb-3">{step.title}</h3>
                     <p className="text-gray-600 leading-relaxed">{step.description}</p>
                   </div>
 
@@ -91,7 +91,7 @@ export default function Students() {
           <ScrollReveal>
             <div className="text-center max-w-3xl mx-auto mb-16">
               <span className="text-gold-600 font-semibold text-sm tracking-wide uppercase">{page.programs.eyebrow}</span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-navy-800 mt-3 mb-4">
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-ink-800 mt-3 mb-4">
                 {page.programs.title}
               </h2>
             </div>
@@ -101,11 +101,11 @@ export default function Students() {
             {programs.map((p, i) => (
               <ScrollReveal key={p.title} delay={i * 100}>
                 <div className="bg-white rounded-2xl p-7 border border-gray-100 hover:shadow-lg transition-shadow h-full">
-                  <h3 className="font-serif font-bold text-navy-800 text-lg mb-2">{p.title}</h3>
+                  <h3 className="font-serif font-bold text-ink-800 text-lg mb-2">{p.title}</h3>
                   <p className="text-gray-600 text-sm leading-relaxed mb-4">{p.description}</p>
                   <Link
                     to="/contact"
-                    className="inline-flex items-center gap-1.5 text-navy-700 font-semibold text-sm hover:gap-2.5 transition-all"
+                    className="inline-flex items-center gap-1.5 text-ink-700 font-semibold text-sm hover:gap-2.5 transition-all"
                   >
                     Get Started <ArrowRight size={16} />
                   </Link>

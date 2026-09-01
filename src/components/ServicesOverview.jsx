@@ -20,7 +20,7 @@ export default function ServicesOverview() {
         <ScrollReveal>
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-gold-600 font-semibold text-sm tracking-wide uppercase">{services.eyebrow}</span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-navy-800 mt-3 mb-4">
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-ink-800 mt-3 mb-4">
               {services.title}
             </h2>
             <p className="text-gray-600 text-lg">
@@ -36,11 +36,11 @@ export default function ServicesOverview() {
                 <div className={`w-14 h-14 ${service.color} rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform`}>
                   <service.icon size={26} />
                 </div>
-                <h3 className="font-serif font-bold text-navy-800 text-lg mb-3">{service.title}</h3>
+                <h3 className="font-serif font-bold text-ink-800 text-lg mb-3">{service.title}</h3>
                 <p className="text-gray-600 text-sm leading-relaxed flex-1">{service.description}</p>
                 <Link
                   to="/services"
-                  className="inline-flex items-center gap-1.5 text-navy-700 font-semibold text-sm mt-5 hover:gap-2.5 transition-all"
+                  className="inline-flex items-center gap-1.5 text-ink-700 font-semibold text-sm mt-5 hover:gap-2.5 transition-all"
                 >
                   Learn More <ArrowRight size={16} />
                 </Link>

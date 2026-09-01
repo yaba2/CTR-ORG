@@ -17,7 +17,12 @@ export default function AdminLogin() {
       await apiSend('/auth/login', 'POST', { email, password });
       navigate('/admin');
     } catch (err) {
-      setError(err.message);
+      const message = String(err.message || '');
+      setError(
+        /failed to fetch|network|econnrefused|502|504/i.test(message)
+          ? 'The CMS API is not running. Start the site with npm run dev, then try again.'
+          : message
+      );
     } finally {
       setLoading(false);
     }
@@ -34,7 +39,7 @@ export default function AdminLogin() {
           />
         </div>
         {error && <div className="mb-4 rounded-lg bg-red-50 text-red-700 px-4 py-3 text-sm">{error}</div>}
-        <label className="block text-sm font-medium text-navy-800 mb-2">Email</label>
+        <label className="block text-sm font-medium text-ink-800 mb-2">Email</label>
         <input
           type="email"
           value={email}
@@ -42,7 +47,7 @@ export default function AdminLogin() {
           className="w-full mb-4 px-4 py-3 rounded-lg border border-gray-200 outline-none focus:border-navy-500"
           required
         />
-        <label className="block text-sm font-medium text-navy-800 mb-2">Password</label>
+        <label className="block text-sm font-medium text-ink-800 mb-2">Password</label>
         <input
           type="password"
           value={password}
@@ -57,7 +62,7 @@ export default function AdminLogin() {
         >
           {loading ? 'Signing in...' : 'Sign in'}
         </button>
-        <Link to="/" className="block text-center text-sm text-navy-500 mt-4 hover:text-navy-800">
+        <Link to="/" className="block text-center text-sm text-ink-500 mt-4 hover:text-ink-800">
           Back to website
         </Link>
       </form>

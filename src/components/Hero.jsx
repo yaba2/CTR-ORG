@@ -4,26 +4,38 @@ import { usePage } from '../context/CmsContext';
 
 export default function Hero() {
   const { hero } = usePage('home');
+  const backgroundImage = hero.backgroundImage;
 
   return (
     <section className="relative min-h-screen flex items-center bg-gradient-to-br from-navy-900 via-navy-800 to-navy-950 overflow-hidden">
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-gold-400 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-navy-400 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gold-300 rounded-full blur-3xl" />
-      </div>
+      {backgroundImage ? (
+        <>
+          <img
+            src={backgroundImage}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-navy-950/70" />
+        </>
+      ) : (
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-gold-400 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-navy-400 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gold-300 rounded-full blur-3xl" />
+        </div>
+      )}
 
       <div className="relative site-container py-24 sm:py-32 lg:py-36">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className={`grid items-center ${backgroundImage ? 'max-w-3xl' : 'lg:grid-cols-2 gap-12'}`}>
           <div>
-            <div className="inline-flex items-center gap-2 bg-gold-500/10 border border-gold-500/20 rounded-full px-4 py-1.5 mb-6 animate-fade-in">
-              <div className="w-2 h-2 bg-gold-400 rounded-full" />
-              <span className="text-gold-300 text-sm font-medium">{hero.badge}</span>
+            <div className="inline-flex items-center gap-2 bg-gold-200/15 border border-gold-200/40 rounded-full px-4 py-1.5 mb-6 animate-fade-in">
+              <div className="w-2 h-2 bg-gold-200 rounded-full" />
+              <span className="text-gold-200 text-sm font-medium">{hero.badge}</span>
             </div>
 
             <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-5 sm:mb-6 animate-fade-in-up">
               {hero.title}{' '}
-              <span className="text-gold-400">{hero.titleHighlight}</span>
+              <span className="text-gold-200">{hero.titleHighlight}</span>
             </h1>
 
             <p className="text-navy-200 text-base sm:text-lg lg:text-xl leading-relaxed mb-6 sm:mb-8 max-w-lg animate-fade-in-up animate-delay-200">
@@ -59,7 +71,7 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="hidden lg:block relative">
+          <div className={`hidden lg:block relative ${backgroundImage ? 'lg:hidden' : ''}`}>
             <div className="relative animate-fade-in">
               <svg viewBox="0 0 500 450" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto drop-shadow-2xl">
                 <rect x="60" y="40" width="380" height="280" rx="20" fill="#1a2846" stroke="#34508c" strokeWidth="2"/>

@@ -38,7 +38,7 @@ export default function GrandOpening() {
         <ScrollReveal>
           <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
             <span className="text-gold-600 font-semibold text-sm tracking-wide uppercase">{grandOpening.eyebrow}</span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-navy-800 mt-3 mb-4">
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-ink-800 mt-3 mb-4">
               {grandOpening.title}
             </h2>
             <p className="text-gray-600 text-base sm:text-lg">
@@ -66,7 +66,7 @@ export default function GrandOpening() {
             <button
               type="button"
               onClick={previousSlide}
-              className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/90 rounded-full shadow-lg flex items-center justify-center text-navy-800 hover:bg-navy-800 hover:text-white transition-colors"
+              className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/90 rounded-full shadow-lg flex items-center justify-center text-ink-800 hover:bg-navy-800 hover:text-white transition-colors"
               aria-label="Previous grand opening image"
             >
               <ChevronLeft size={24} />
@@ -74,7 +74,7 @@ export default function GrandOpening() {
             <button
               type="button"
               onClick={nextSlide}
-              className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/90 rounded-full shadow-lg flex items-center justify-center text-navy-800 hover:bg-navy-800 hover:text-white transition-colors"
+              className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/90 rounded-full shadow-lg flex items-center justify-center text-ink-800 hover:bg-navy-800 hover:text-white transition-colors"
               aria-label="Next grand opening image"
             >
               <ChevronRight size={24} />

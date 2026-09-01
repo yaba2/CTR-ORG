@@ -45,9 +45,9 @@ export function ContactEditor({ content, onChange }) {
           onChange={(guaranteeText) => set('guaranteeText', guaranteeText)}
           textarea
         />
-        <p className="text-sm text-navy-600">
+        <p className="text-sm text-ink-600">
           To change email, phone, address, or hours, go to{' '}
-          <Link to="/admin/settings" className="font-medium text-navy-800 underline">
+          <Link to="/admin/settings" className="font-medium text-ink-800 underline">
             Settings
           </Link>
           .
@@ -108,9 +108,9 @@ export function BlogPageEditor({ content, onChange }) {
       </Section>
 
       <Section id="posts" number="2" title="Blog articles" description="Individual posts are created and edited separately.">
-        <p className="text-sm text-navy-600">
+        <p className="text-sm text-ink-600">
           Create and update articles in{' '}
-          <Link to="/admin/posts" className="font-medium text-navy-800 underline">
+          <Link to="/admin/posts" className="font-medium text-ink-800 underline">
             Blog posts
           </Link>
           .

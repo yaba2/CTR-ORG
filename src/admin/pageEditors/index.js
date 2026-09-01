@@ -15,7 +15,7 @@ export const pageEditors = {
 
 export const pageOutlines = {
   home: [
-    { id: 'hero', label: 'Hero banner' },
+    { id: 'hero', label: 'Hero banner & background' },
     { id: 'services', label: 'Services overview' },
     { id: 'grand-opening', label: 'Grand opening' },
     { id: 'testimonials', label: 'Testimonials' },

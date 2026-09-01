@@ -1,4 +1,4 @@
-import { Field, ImageList, ItemCard, Section, StringList, updateList } from '../form/Fields';
+import { Field, ImageField, ImageList, ItemCard, Section, StringList, updateList } from '../form/Fields';
 import TestimonialsManager from '../TestimonialsManager';
 
 export function HomeEditor({ content, onChange }) {
@@ -19,8 +19,16 @@ export function HomeEditor({ content, onChange }) {
         id="hero"
         number="1"
         title="Hero banner"
-        description="The first section visitors see on the homepage: headline, buttons, and stats."
+        description="The first section visitors see on the homepage. Upload a background photo here, then edit the headline and buttons."
       >
+        <div className="rounded-xl border-2 border-navy-200 bg-navy-50 p-5">
+          <ImageField
+            label="Hero background image"
+            hint="This is the photo behind the homepage headline. Click Upload from device, then Save changes at the top of this page."
+            value={hero.backgroundImage || ''}
+            onChange={(backgroundImage) => setHero({ backgroundImage })}
+          />
+        </div>
         <Field label="Small badge text" value={hero.badge} onChange={(badge) => setHero({ badge })} />
         <Field label="Headline" value={hero.title} onChange={(title) => setHero({ title })} textarea rows={2} />
         <Field
@@ -35,7 +43,7 @@ export function HomeEditor({ content, onChange }) {
           <Field label="Secondary button" value={hero.secondaryCta} onChange={(secondaryCta) => setHero({ secondaryCta })} />
         </div>
         <div className="pt-2">
-          <div className="text-sm font-semibold text-navy-800 mb-3">Homepage stats</div>
+          <div className="text-sm font-semibold text-ink-800 mb-3">Homepage stats</div>
           <div className="grid sm:grid-cols-3 gap-4">
             {(hero.stats || []).map((stat, index) => (
               <ItemCard key={index} title={`Stat ${index + 1}`}>

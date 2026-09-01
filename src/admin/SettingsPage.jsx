@@ -12,6 +12,7 @@ const empty = {
   address: '',
   hours: '',
   primaryColor: '#1a2846',
+  textColor: '#1a2846',
   accentColor: '#e5a830',
   headingFont: 'Georgia',
   bodyFont: 'Inter',
@@ -61,13 +62,13 @@ export default function SettingsPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="font-serif text-3xl font-bold text-navy-800 mb-2">Settings</h1>
-        <p className="text-navy-600">Site identity, contact details, colors, and fonts.</p>
+        <h1 className="font-serif text-3xl font-bold text-ink-800 mb-2">Settings</h1>
+        <p className="text-ink-600">Site identity, contact details, colors, and fonts.</p>
       </div>
-      {message && <div className="text-sm text-navy-700 bg-navy-50 rounded-lg px-4 py-3">{message}</div>}
+      {message && <div className="text-sm text-ink-700 bg-navy-50 rounded-lg px-4 py-3">{message}</div>}
 
       <form onSubmit={save} className="bg-white rounded-2xl border border-slate-200 p-6 space-y-4">
-        <h2 className="font-serif text-xl font-bold text-navy-800">Site & contact</h2>
+        <h2 className="font-serif text-xl font-bold text-ink-800">Site & contact</h2>
         <Field label="Site name" value={form.siteName} onChange={(v) => update('siteName', v)} />
         <Field label="Tagline" value={form.tagline} onChange={(v) => update('tagline', v)} />
         <Field label="Footer text" value={form.footerText} onChange={(v) => update('footerText', v)} textarea />
@@ -78,10 +79,11 @@ export default function SettingsPage() {
           <Field label="Hours" value={form.hours} onChange={(v) => update('hours', v)} />
         </div>
 
-        <h2 className="font-serif text-xl font-bold text-navy-800 pt-4">Appearance</h2>
+        <h2 className="font-serif text-xl font-bold text-ink-800 pt-4">Appearance</h2>
         <div className="grid sm:grid-cols-2 gap-4">
           <label className="block">
-            <span className="block text-sm font-medium text-navy-800 mb-1">Primary color</span>
+            <span className="block text-sm font-medium text-ink-800 mb-1">Primary color</span>
+            <p className="text-xs text-ink-500 mb-2">Buttons, navigation, and dark sections.</p>
             <div className="flex items-center gap-3">
               <input type="color" value={form.primaryColor} onChange={(e) => update('primaryColor', e.target.value)} />
               <input
@@ -92,7 +94,23 @@ export default function SettingsPage() {
             </div>
           </label>
           <label className="block">
-            <span className="block text-sm font-medium text-navy-800 mb-1">Accent color</span>
+            <span className="block text-sm font-medium text-ink-800 mb-1">Text color</span>
+            <p className="text-xs text-ink-500 mb-2">Headings and body text on light backgrounds.</p>
+            <div className="flex items-center gap-3">
+              <input
+                type="color"
+                value={form.textColor || form.primaryColor}
+                onChange={(e) => update('textColor', e.target.value)}
+              />
+              <input
+                value={form.textColor || form.primaryColor}
+                onChange={(e) => update('textColor', e.target.value)}
+                className="flex-1 px-3 py-2 rounded-lg border border-slate-200"
+              />
+            </div>
+          </label>
+          <label className="block">
+            <span className="block text-sm font-medium text-ink-800 mb-1">Accent color</span>
             <div className="flex items-center gap-3">
               <input type="color" value={form.accentColor} onChange={(e) => update('accentColor', e.target.value)} />
               <input
@@ -103,7 +121,7 @@ export default function SettingsPage() {
             </div>
           </label>
           <label className="block">
-            <span className="block text-sm font-medium text-navy-800 mb-1">Heading font</span>
+            <span className="block text-sm font-medium text-ink-800 mb-1">Heading font</span>
             <select
               value={form.headingFont}
               onChange={(e) => update('headingFont', e.target.value)}
@@ -117,7 +135,7 @@ export default function SettingsPage() {
             </select>
           </label>
           <label className="block">
-            <span className="block text-sm font-medium text-navy-800 mb-1">Body font</span>
+            <span className="block text-sm font-medium text-ink-800 mb-1">Body font</span>
             <select
               value={form.bodyFont}
               onChange={(e) => update('bodyFont', e.target.value)}
@@ -141,7 +159,7 @@ export default function SettingsPage() {
       </form>
 
       <form onSubmit={changePassword} className="bg-white rounded-2xl border border-slate-200 p-6 space-y-4">
-        <h2 className="font-serif text-xl font-bold text-navy-800">Change password</h2>
+        <h2 className="font-serif text-xl font-bold text-ink-800">Change password</h2>
         <Field
           label="Current password"
           type="password"
@@ -166,7 +184,7 @@ function Field({ label, value, onChange, textarea, type = 'text' }) {
   const classes = 'w-full px-3 py-2 rounded-lg border border-slate-200';
   return (
     <label className="block">
-      <span className="block text-sm font-medium text-navy-800 mb-1">{label}</span>
+      <span className="block text-sm font-medium text-ink-800 mb-1">{label}</span>
       {textarea ? (
         <textarea className={classes} rows={4} value={value} onChange={(e) => onChange(e.target.value)} />
       ) : (

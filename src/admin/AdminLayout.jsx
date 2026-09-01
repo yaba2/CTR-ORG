@@ -46,7 +46,7 @@ export default function AdminLayout() {
   };
 
   if (checking) {
-    return <div className="min-h-screen bg-slate-100 flex items-center justify-center text-navy-600">Loading CMS...</div>;
+    return <div className="min-h-screen bg-slate-100 flex items-center justify-center text-ink-600">Loading CMS...</div>;
   }
 
   if (!user) return null;

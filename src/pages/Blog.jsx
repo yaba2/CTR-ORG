@@ -12,7 +12,7 @@ export default function Blog() {
         <div className="site-container">
           <div className="text-center">
             <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-navy-800 border-t-transparent"></div>
-            <p className="mt-4 text-navy-600">Loading blog posts...</p>
+            <p className="mt-4 text-ink-600">Loading blog posts...</p>
           </div>
         </div>
       </div>
@@ -25,7 +25,7 @@ export default function Blog() {
         <div className="site-container">
           <div className="text-center">
             <p className="text-red-600 text-lg">Error: {error}</p>
-            <p className="mt-2 text-navy-600">Please try again later.</p>
+            <p className="mt-2 text-ink-600">Please try again later.</p>
           </div>
         </div>
       </div>
@@ -36,8 +36,8 @@ export default function Blog() {
     <div className="min-h-screen bg-navy-50 pt-32 pb-20">
       <div className="site-container">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-serif font-bold text-navy-800 mb-4">{page.hero.title}</h1>
-          <p className="text-lg text-navy-600 max-w-2xl mx-auto">
+          <h1 className="text-4xl font-serif font-bold text-ink-800 mb-4">{page.hero.title}</h1>
+          <p className="text-lg text-ink-600 max-w-2xl mx-auto">
             {page.hero.subtitle}
           </p>
         </div>
@@ -50,7 +50,7 @@ export default function Blog() {
         
         {posts.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-navy-600 text-lg">No blog posts available at the moment.</p>
+            <p className="text-ink-600 text-lg">No blog posts available at the moment.</p>
           </div>
         )}
       </div>

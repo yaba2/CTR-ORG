@@ -5,11 +5,11 @@ export function Section({ id, number, title, description, children }) {
   return (
     <section id={id} className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden scroll-mt-28">
       <header className="px-6 py-5 border-b border-slate-200 bg-gradient-to-r from-navy-50 to-white">
-        <p className="text-xs font-semibold uppercase tracking-wider text-navy-500 mb-1">
+        <p className="text-xs font-semibold uppercase tracking-wider text-ink-500 mb-1">
           Section {number}
         </p>
-        <h2 className="font-serif text-2xl font-bold text-navy-800">{title}</h2>
-        {description && <p className="text-sm text-navy-600 mt-1 max-w-2xl">{description}</p>}
+        <h2 className="font-serif text-2xl font-bold text-ink-800">{title}</h2>
+        {description && <p className="text-sm text-ink-600 mt-1 max-w-2xl">{description}</p>}
       </header>
       <div className="p-6 space-y-5">{children}</div>
     </section>
@@ -18,11 +18,11 @@ export function Section({ id, number, title, description, children }) {
 
 export function Field({ label, hint, value, onChange, textarea = false, rows = 4, placeholder }) {
   const classes =
-    'w-full px-3.5 py-2.5 rounded-lg border border-slate-200 bg-white text-navy-800 outline-none focus:border-navy-500 focus:ring-2 focus:ring-navy-500/15';
+    'w-full px-3.5 py-2.5 rounded-lg border border-slate-200 bg-white text-ink-800 outline-none focus:border-navy-500 focus:ring-2 focus:ring-navy-500/15';
   return (
     <label className="block">
-      <span className="block text-sm font-semibold text-navy-800 mb-1.5">{label}</span>
-      {hint && <span className="block text-xs text-navy-500 mb-1.5">{hint}</span>}
+      <span className="block text-sm font-semibold text-ink-800 mb-1.5">{label}</span>
+      {hint && <span className="block text-xs text-ink-500 mb-1.5">{hint}</span>}
       {textarea ? (
         <textarea
           className={`${classes} resize-y min-h-[96px]`}
@@ -43,11 +43,68 @@ export function Field({ label, hint, value, onChange, textarea = false, rows = 4
   );
 }
 
+export function ImageField({ label, hint, value, onChange }) {
+  const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState('');
+
+  const upload = async (file) => {
+    if (!file) return;
+    setUploading(true);
+    setError('');
+    try {
+      const result = await apiUpload(file);
+      onChange(result.url);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  return (
+    <div>
+      <div className="text-sm font-semibold text-ink-800 mb-1.5">{label}</div>
+      {hint && <p className="text-xs text-ink-500 mb-3">{hint}</p>}
+      {error && <div className="text-sm text-red-600 mb-3">{error}</div>}
+      {value ? (
+        <div className="mb-3 w-full max-w-xl h-40 rounded-xl bg-slate-100 flex items-center justify-center overflow-hidden">
+          <img src={value} alt="" className="max-w-full max-h-full object-contain" />
+        </div>
+      ) : (
+        <div className="mb-3 w-full max-w-xl h-28 rounded-xl bg-slate-100 flex items-center justify-center text-sm text-ink-500">
+          No image yet
+        </div>
+      )}
+      <Field label="Image URL" value={value || ''} onChange={onChange} placeholder="https:// or /uploads/..." />
+      <div className="mt-3 flex flex-wrap items-center gap-3">
+        <label className="inline-flex items-center px-4 py-2.5 rounded-lg bg-navy-800 text-white text-sm font-semibold cursor-pointer hover:bg-navy-700">
+          {uploading ? 'Uploading...' : 'Upload from device'}
+          <input
+            type="file"
+            accept="image/*"
+            className="hidden"
+            disabled={uploading}
+            onChange={(e) => {
+              upload(e.target.files?.[0]);
+              e.target.value = '';
+            }}
+          />
+        </label>
+        {value && (
+          <button type="button" onClick={() => onChange('')} className="text-sm text-red-600 hover:underline">
+            Remove image
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export function ItemCard({ title, onRemove, children }) {
   return (
     <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
       <div className="flex items-center justify-between gap-3 mb-4">
-        <h3 className="font-semibold text-navy-800">{title}</h3>
+        <h3 className="font-semibold text-ink-800">{title}</h3>
         {onRemove && (
           <button type="button" onClick={onRemove} className="text-sm text-red-600 hover:underline">
             Remove
@@ -63,7 +120,7 @@ export function StringList({ label, items = [], onChange, placeholder, addLabel 
   const list = Array.isArray(items) ? items : [];
   return (
     <div>
-      <div className="text-sm font-semibold text-navy-800 mb-2">{label}</div>
+      <div className="text-sm font-semibold text-ink-800 mb-2">{label}</div>
       <div className="space-y-2">
         {list.map((item, index) => (
           <div key={index} className="flex gap-2">
@@ -86,7 +143,7 @@ export function StringList({ label, items = [], onChange, placeholder, addLabel 
       <button
         type="button"
         onClick={() => onChange([...list, ''])}
-        className="mt-3 text-sm font-medium text-navy-800 hover:underline"
+        className="mt-3 text-sm font-medium text-ink-800 hover:underline"
       >
         + {addLabel}
       </button>
@@ -127,8 +184,8 @@ export function ImageList({ images = [], onChange }) {
 
   return (
     <div>
-      <div className="text-sm font-semibold text-navy-800 mb-2">Slideshow images</div>
-      <p className="text-xs text-navy-500 mb-3">Upload photos or paste an image URL. Existing photos appear below so you can edit or remove them.</p>
+      <div className="text-sm font-semibold text-ink-800 mb-2">Slideshow images</div>
+      <p className="text-xs text-ink-500 mb-3">Upload photos or paste an image URL. Existing photos appear below so you can edit or remove them.</p>
       {error && <div className="text-sm text-red-600 mb-3">{error}</div>}
       <div className="space-y-4">
         {list.map((image, index) => (
@@ -137,7 +194,7 @@ export function ImageList({ images = [], onChange }) {
               {image.src ? (
                 <img src={image.src} alt={image.alt || ''} className="w-full sm:w-40 h-28 object-cover rounded-lg bg-white" />
               ) : (
-                <div className="w-full sm:w-40 h-28 rounded-lg bg-slate-200 flex items-center justify-center text-xs text-navy-500">
+                <div className="w-full sm:w-40 h-28 rounded-lg bg-slate-200 flex items-center justify-center text-xs text-ink-500">
                   No image
                 </div>
               )}
@@ -182,7 +239,7 @@ export function ImageList({ images = [], onChange }) {
         <button
           type="button"
           onClick={() => onChange([...list, { src: '', alt: '' }])}
-          className="text-sm font-medium text-navy-800 hover:underline"
+          className="text-sm font-medium text-ink-800 hover:underline"
         >
           + Add image URL
         </button>

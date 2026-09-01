@@ -55,8 +55,8 @@ export default function Navbar() {
                 to={link.path}
                 className={`px-2.5 py-2 rounded-md text-base font-semibold transition-colors ${
                   location.pathname === link.path
-                    ? 'text-navy-800 bg-navy-50'
-                    : 'text-navy-600 hover:text-navy-800 hover:bg-navy-50/50'
+                    ? 'text-ink-800 bg-navy-50'
+                    : 'text-ink-600 hover:text-ink-800 hover:bg-navy-50/50'
                 }`}
               >
                 {link.name}
@@ -72,7 +72,7 @@ export default function Navbar() {
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-md text-navy-700 hover:bg-navy-50 transition-colors"
+            className="lg:hidden p-2 rounded-md text-ink-700 hover:bg-navy-50 transition-colors"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -91,8 +91,8 @@ export default function Navbar() {
               to={link.path}
               className={`block px-3 py-2.5 rounded-md text-base font-semibold transition-colors ${
                 location.pathname === link.path
-                  ? 'text-navy-800 bg-navy-50'
-                  : 'text-navy-600 hover:text-navy-800 hover:bg-navy-50/50'
+                  ? 'text-ink-800 bg-navy-50'
+                  : 'text-ink-600 hover:text-ink-800 hover:bg-navy-50/50'
               }`}
             >
               {link.name}

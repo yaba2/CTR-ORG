@@ -8,6 +8,7 @@ export const defaultSettings = {
   address: 'Galkio - Puntland, Somalia',
   hours: 'Mon - Fri: 9:00 AM - 6:00 PM',
   primaryColor: '#1a2846',
+  textColor: '#1a2846',
   accentColor: '#e5a830',
   headingFont: 'Georgia',
   bodyFont: 'Inter',
@@ -25,6 +26,7 @@ export const defaultPages = {
           'Supporting governments, students, and professionals with expert guidance and impactful solutions.',
         primaryCta: 'Get Consultation',
         secondaryCta: 'Start Your Research Journey',
+        backgroundImage: '',
         stats: [
           { value: '200+', label: 'Research Projects' },
           { value: '10+', label: 'Institutional Partners' },

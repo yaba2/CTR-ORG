@@ -43,7 +43,7 @@ export default function Testimonials() {
                       {t.name.charAt(0)}
                     </div>
                     <div>
-                      <div className="font-semibold text-navy-800 text-sm">{t.name}</div>
+                      <div className="font-semibold text-ink-800 text-sm">{t.name}</div>
                       <div className="text-gray-500 text-xs">{t.role}</div>
                     </div>
                   </div>
@@ -60,7 +60,7 @@ export default function Testimonials() {
             <div className="grid sm:grid-cols-3 gap-8">
               {page.stats.map((stat) => (
                 <div key={stat.label}>
-                  <div className="text-4xl font-bold text-navy-800 mb-1">{stat.value}</div>
+                  <div className="text-4xl font-bold text-ink-800 mb-1">{stat.value}</div>
                   <div className="text-gray-600 text-sm">{stat.label}</div>
                 </div>
               ))}
