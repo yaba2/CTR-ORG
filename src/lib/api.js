@@ -75,33 +75,23 @@ export function apiSend(path, method, body) {
 }
 
 export function apiUpload(file) {
-  const maxBytes = 4 * 1024 * 1024;
+  const maxBytes = 3 * 1024 * 1024;
   if (file.size > maxBytes) {
-    return Promise.reject(new Error('Image is too large. Please use a file under 4 MB on the live site.'));
+    return Promise.reject(new Error('Image is too large. Please use a file under 3 MB on the live site.'));
   }
 
-  return file.arrayBuffer().then((buffer) => {
-    const bytes = new Uint8Array(buffer);
-    let binary = '';
-    const chunk = 0x8000;
-    for (let i = 0; i < bytes.length; i += chunk) {
-      binary += String.fromCharCode(...bytes.subarray(i, i + chunk));
-    }
-    return fetch('/api/auth/upload', {
-      method: 'POST',
-      credentials: 'include',
-      cache: 'no-store',
-      headers: jsonHeaders,
-      body: JSON.stringify({
-        filename: file.name,
-        mimeType: file.type,
-        data: btoa(binary),
-      }),
-    })
-      .then(parse)
-      .then((data) => {
-        notifyCmsUpdate();
-        return data;
-      });
-  });
+  const form = new FormData();
+  form.append('file', file, file.name || 'image.jpg');
+
+  return fetch('/api/auth/upload', {
+    method: 'POST',
+    credentials: 'include',
+    cache: 'no-store',
+    body: form,
+  })
+    .then(parse)
+    .then((data) => {
+      notifyCmsUpdate();
+      return data;
+    });
 }

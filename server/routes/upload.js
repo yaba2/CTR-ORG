@@ -7,11 +7,12 @@ const upload = multer({
   storage: multer.memoryStorage(),
   limits: { fileSize: 8 * 1024 * 1024 },
   fileFilter: (_req, file, cb) => {
-    if (!String(file.mimetype || '').startsWith('image/')) {
-      cb(new Error('Please upload an image file'));
+    const type = String(file.mimetype || '');
+    if (type.startsWith('image/') || type === 'application/octet-stream') {
+      cb(null, true);
       return;
     }
-    cb(null, true);
+    cb(new Error('Please upload an image file'));
   },
 });
 

@@ -23,6 +23,7 @@ const allowedOrigins = [
 ];
 if (process.env.SITE_URL) allowedOrigins.push(process.env.SITE_URL.replace(/\/$/, ''));
 if (process.env.VERCEL_URL) allowedOrigins.push(`https://${process.env.VERCEL_URL}`);
+allowedOrigins.push('https://www.ctr-org.com', 'https://ctr-org.com');
 
 app.use(
   cors({
@@ -43,7 +44,7 @@ app.use((req, res, next) => {
   }
   next();
 });
-app.use(express.json({ limit: '25mb' }));
+app.use(express.json({ limit: '4mb', type: 'application/json' }));
 app.use(cookieParser());
 app.use('/uploads', express.static(path.join(projectRoot, 'public', 'uploads')));
 
