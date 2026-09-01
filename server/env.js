@@ -26,9 +26,22 @@ function urlFromDatabase() {
   return `https://${match[1]}.supabase.co`;
 }
 
+export function normalizeSupabaseUrl(raw) {
+  const value = clean(raw);
+  if (!value || /^(postgres(ql)?|prisma)/i.test(value)) return '';
+  try {
+    const parsed = new URL(value);
+    if (!parsed.hostname) return '';
+    return `${parsed.protocol}//${parsed.host}`;
+  } catch {
+    return '';
+  }
+}
+
 export function getSupabaseConfig() {
-  const url =
-    readEnv(['SUPABASE_URL', 'NEXT_PUBLIC_SUPABASE_URL', 'VITE_SUPABASE_URL']) || urlFromDatabase();
+  const url = normalizeSupabaseUrl(
+    readEnv(['SUPABASE_URL', 'NEXT_PUBLIC_SUPABASE_URL', 'VITE_SUPABASE_URL']) || urlFromDatabase()
+  );
   const key = readEnv([
     'SUPABASE_SERVICE_ROLE_KEY',
     'SUPABASE_SERVICE_ROLE',

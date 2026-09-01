@@ -104,6 +104,7 @@ export default function PostEditor() {
     setMessage('');
     try {
       const result = await apiUpload(file);
+      if (!result?.url) throw new Error('Upload did not return an image URL.');
       update('featuredImage', result.url);
     } catch (err) {
       URL.revokeObjectURL(localUrl);
@@ -122,7 +123,8 @@ export default function PostEditor() {
     setMessage('');
     try {
       const result = await apiUpload(file);
-      const alt = file.name.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' ');
+      if (!result?.url) throw new Error('Upload did not return an image URL.');
+      const alt = file.name.replace(/\.[^.]+$/, '').replace(/[-_\\/]+/g, ' ').replace(/[^\w\s-]/g, '').trim() || 'image';
       const snippet = imageMarkdown(result.url, alt);
       setBodyPreviews((current) => {
         const next = { ...current, [result.url]: localUrl };
@@ -166,8 +168,12 @@ export default function PostEditor() {
     setSaving(true);
     setMessage('');
     try {
+      if (uploadingFeatured || uploadingBody) {
+        throw new Error('Please wait for the image upload to finish before saving.');
+      }
       const payload = {
         ...form,
+        featuredImage: String(form.featuredImage || '').startsWith('blob:') ? '' : form.featuredImage,
         publishedAt: form.publishedAt,
       };
       if (isNew) {
@@ -198,7 +204,7 @@ export default function PostEditor() {
         </div>
         <button
           type="submit"
-          disabled={saving}
+          disabled={saving || uploadingFeatured || uploadingBody}
           className="px-5 py-2.5 rounded-lg bg-navy-800 text-white font-semibold hover:bg-navy-700"
         >
           {saving ? 'Saving...' : 'Save post'}

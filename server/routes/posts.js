@@ -26,6 +26,13 @@ function normalizeContent(content) {
   return [];
 }
 
+function publicImageUrl(value) {
+  const url = String(value || '').trim();
+  if (!url || /^(blob:|data:)/i.test(url) || /\\/.test(url)) return null;
+  if (/^https?:\/\//i.test(url) || url.startsWith('/uploads/')) return url;
+  return null;
+}
+
 postsRouter.get('/', async (_req, res) => {
   const posts = await prisma.blogPost.findMany({ orderBy: { publishedAt: 'desc' } });
   res.json(posts);
@@ -48,7 +55,7 @@ postsRouter.post('/', async (req, res) => {
         slug: slugify(slug || title),
         summary: summary || '',
         content: normalizeContent(content),
-        featuredImage: featuredImage || null,
+        featuredImage: publicImageUrl(featuredImage),
         published: published !== false,
         publishedAt: publishedAt ? new Date(publishedAt) : new Date(),
       },
@@ -71,7 +78,7 @@ postsRouter.put('/:id', async (req, res) => {
       ...(slug !== undefined ? { slug: slugify(slug) } : {}),
       ...(summary !== undefined ? { summary } : {}),
       ...(content !== undefined ? { content: normalizeContent(content) } : {}),
-      ...(featuredImage !== undefined ? { featuredImage } : {}),
+      ...(featuredImage !== undefined ? { featuredImage: publicImageUrl(featuredImage) } : {}),
       ...(published !== undefined ? { published } : {}),
       ...(publishedAt !== undefined ? { publishedAt: new Date(publishedAt) } : {}),
     },

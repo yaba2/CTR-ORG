@@ -53,6 +53,7 @@ export function ImageField({ label, hint, value, onChange }) {
     setError('');
     try {
       const result = await apiUpload(file);
+      if (!result?.url) throw new Error('Upload did not return an image URL.');
       onChange(result.url);
     } catch (err) {
       setError(err.message);
