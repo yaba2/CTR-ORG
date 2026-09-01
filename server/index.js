@@ -9,6 +9,7 @@ import { postsRouter } from './routes/posts.js';
 import { settingsRouter } from './routes/settings.js';
 import { testimonialsRouter } from './routes/testimonials.js';
 import { uploadRouter } from './routes/upload.js';
+import { getSupabaseConfig } from './env.js';
 
 const app = express();
 const port = Number(process.env.PORT) || 4000;
@@ -43,7 +44,15 @@ app.use(express.json({ limit: '25mb' }));
 app.use(cookieParser());
 
 app.get('/api/health', (_req, res) => {
-  res.json({ ok: true });
+  const storage = getSupabaseConfig();
+  res.json({
+    ok: true,
+    storage: {
+      hasUrl: storage.hasUrl,
+      hasKey: storage.hasKey,
+      ready: storage.ready,
+    },
+  });
 });
 
 app.use('/api/auth', authRouter);

@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { createClient } from '@supabase/supabase-js';
+import { getSupabaseConfig } from './env.js';
 
 const BUCKET = 'uploads';
 
@@ -10,9 +11,8 @@ function fileName(originalName = 'image.jpg') {
 }
 
 function supabaseAdmin() {
-  const url = process.env.SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!url || !key) return null;
+  const { url, key, ready } = getSupabaseConfig();
+  if (!ready) return null;
   return createClient(url, key, { auth: { persistSession: false, autoRefreshToken: false } });
 }
 
@@ -48,8 +48,10 @@ export async function storeImage({ buffer, filename, mimeType }) {
   }
 
   if (process.env.VERCEL) {
+    const { hasUrl, hasKey } = getSupabaseConfig();
+    const missing = [!hasUrl && 'SUPABASE_URL', !hasKey && 'SUPABASE_SERVICE_ROLE_KEY'].filter(Boolean);
     throw new Error(
-      'Image storage is not configured. Add SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in Vercel environment variables.'
+      `Image storage is not configured. Missing on Vercel: ${missing.join(' and ')}. Set them for Production, then Redeploy without build cache.`
     );
   }
 
